@@ -165,9 +165,13 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
 
     @Override
     public void onAuthenticated() {
-        this.isAuthInProgress = false;
-        this.dialogCallback.onAuthenticated();
-        dismiss();
+        try {
+            this.isAuthInProgress = false;
+            this.dialogCallback.onAuthenticated();
+            dismiss();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
     }
 
     @Override
@@ -179,9 +183,13 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
 
     @Override
     public void onCancelled() {
-        this.isAuthInProgress = false;
-        this.mFingerprintHandler.endAuth();
-        this.dialogCallback.onCancelled();
-        dismiss();
+        try {
+            this.isAuthInProgress = false;
+            this.mFingerprintHandler.endAuth();
+            this.dialogCallback.onCancelled();
+            dismiss();
+        } catch (Exception e) {
+             // e.printStackTrace();
+        }
     }
 }
