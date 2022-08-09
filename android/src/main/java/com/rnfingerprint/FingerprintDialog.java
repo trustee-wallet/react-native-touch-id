@@ -153,6 +153,7 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
         if (config.hasKey("imageErrorColor")) {
             this.imageErrorColor = config.getInt("imageErrorColor");
         }
+
     }
 
     public interface DialogResultListener {
@@ -189,7 +190,7 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
             this.dialogCallback.onCancelled();
             dismiss();
         } catch (Exception e) {
-             // e.printStackTrace();
+//              e.printStackTrace();
         }
     }
 }
