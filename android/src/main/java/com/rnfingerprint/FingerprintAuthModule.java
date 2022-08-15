@@ -22,6 +22,7 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
 
     private KeyguardManager keyguardManager;
     private boolean isAppActive;
+    private FingerprintDialog fingerprintDialog;
 
     public static boolean inProgress = false;
 
@@ -68,6 +69,17 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
         }
     }
 
+    @ReactMethod
+    public void closeFingerprint() {
+        final Activity activity = getCurrentActivity();
+        if (activity == null) {
+            return;
+        }
+
+        fingerprintDialog.onCancelled();
+        return;
+    }
+
     @TargetApi(Build.VERSION_CODES.M)
     @ReactMethod
     public void authenticate(final String reason, final ReadableMap authConfig, final Callback reactErrorCallback, final Callback reactSuccessCallback) {
@@ -99,7 +111,7 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
 
         final DialogResultHandler drh = new DialogResultHandler(reactErrorCallback, reactSuccessCallback);
 
-        final FingerprintDialog fingerprintDialog = new FingerprintDialog();
+        fingerprintDialog = new FingerprintDialog();
         fingerprintDialog.setCryptoObject(cryptoObject);
         fingerprintDialog.setReasonForAuthentication(reason);
         fingerprintDialog.setAuthConfig(authConfig);

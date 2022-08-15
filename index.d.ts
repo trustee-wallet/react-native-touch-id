@@ -3,7 +3,7 @@ declare module 'react-native-touch-id' {
      * The supported biometry type
      */
     type BiometryType = 'FaceID' | 'TouchID' | 'Fingerprint';
-  
+
     /**
      * Base config to pass to `TouchID.isSupported` and `TouchID.authenticate`
      */
@@ -13,7 +13,7 @@ declare module 'react-native-touch-id' {
        */
       unifiedErrors?: boolean;
     }
-  
+
     /**
      * Authentication config
      */
@@ -59,7 +59,7 @@ declare module 'react-native-touch-id' {
       | 'NOT_AVAILABLE'
       | 'NOT_PRESENT'
       | 'NOT_ENROLLED';
-  
+
     /**
      * `authenticate` error code
      */
@@ -74,7 +74,7 @@ declare module 'react-native-touch-id' {
       | 'PROCESSING_ERROR'
       | 'USER_FALLBACK'
       | 'UNKNOWN_ERROR';
-  
+
     /**
      * Error returned from `authenticate`
      */
@@ -93,7 +93,7 @@ declare module 'react-native-touch-id' {
       code: IsSupportedErrorCode;
       details: string;
     }
-  
+
     const TouchID: {
       /**
        *
@@ -102,11 +102,12 @@ declare module 'react-native-touch-id' {
        */
       authenticate(reason?: string, config?: AuthenticateConfig): Promise<true>;
       /**
-       * 
+       *
        * @param config - Returns a `Promise` that rejects if TouchID is not supported. On iOS resolves with a `biometryType` `String` of `FaceID` or `TouchID`
        */
       isSupported(config?: IsSupportedConfig): Promise<BiometryType>;
+
+      closeFingerprint(): Promise<any>
     };
     export default TouchID;
   }
-  
