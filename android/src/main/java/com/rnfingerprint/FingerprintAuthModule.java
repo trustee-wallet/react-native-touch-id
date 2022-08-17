@@ -75,6 +75,9 @@ public class FingerprintAuthModule extends ReactContextBaseJavaModule implements
         if (activity == null) {
             return;
         }
+        if (fingerprintDialog == null) {
+            return;   
+        }
 
         fingerprintDialog.onCancelled();
         return;
