@@ -20,7 +20,7 @@ export default {
   closeFingerprint() {
     return NativeTouchID.closeFingerprint();
   },
-
+  
   authenticate(reason, config) {
     var DEFAULT_CONFIG = {
       title: 'Authentication Required',

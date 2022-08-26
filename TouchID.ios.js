@@ -26,6 +26,11 @@ export default {
     });
   },
 
+  closeFingerprint() {
+    // already perfect
+    return true
+  },
+  
   authenticate(reason, config) {
     const DEFAULT_CONFIG = {
       fallbackLabel: null,
