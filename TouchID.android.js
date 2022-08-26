@@ -17,6 +17,10 @@ export default {
     });
   },
 
+  closeFingerprint() {
+    return NativeTouchID.closeFingerprint();
+  },
+
   authenticate(reason, config) {
     var DEFAULT_CONFIG = {
       title: 'Authentication Required',
@@ -25,6 +29,7 @@ export default {
       sensorDescription: 'Touch sensor',
       sensorErrorDescription: 'Failed',
       cancelText: 'Cancel',
+      defaultError: 'Not recognized. Try again.',
       unifiedErrors: false
     };
     var authReason = reason ? reason : ' ';
