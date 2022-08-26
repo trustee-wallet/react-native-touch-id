@@ -34,6 +34,7 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
     private String sensorDescription = "";
     private String sensorErrorDescription = "";
     private String errorText = "";
+    private String defaultError = "";
 
     @Override
     public void onAttach(Context context) {
@@ -154,6 +155,10 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
             this.imageErrorColor = config.getInt("imageErrorColor");
         }
 
+        if (config.hasKey("defaultError")) {
+            this.defaultError = config.getString("defaultError");
+        }
+
     }
 
     public interface DialogResultListener {
@@ -177,7 +182,13 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
 
     @Override
     public void onError(String errorString, int errorCode) {
-        this.mFingerprintError.setText(errorString);
+
+        if (errorString.equals("DEFAULT_ERROR")) {
+            this.mFingerprintError.setText(this.defaultError);
+        } else {
+            this.mFingerprintError.setText(errorString);
+        }
+
         this.mFingerprintImage.setColorFilter(this.imageErrorColor);
         this.mFingerprintSensorDescription.setText(this.sensorErrorDescription);
     }
